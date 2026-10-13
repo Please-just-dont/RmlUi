@@ -7,6 +7,9 @@
 #include "Traits.h"
 #include "Types.h"
 
+
+class GUIContext;
+
 namespace Rml {
 
 class Stream;
@@ -442,6 +445,9 @@ private:
 	static void SendEvents(const ElementSet& old_items, const ElementSet& new_items, EventId id, const Dictionary& parameters);
 
 	friend class Rml::Element;
+
+public:
+	GUIContext* my_context;
 };
 
 } // namespace Rml
