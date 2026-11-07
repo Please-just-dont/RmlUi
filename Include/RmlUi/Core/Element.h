@@ -14,6 +14,8 @@
 #include "Tween.h"
 #include "Types.h"
 
+namespace RmlUiX { namespace internal { class RmlUiFriendClass; }}
+
 namespace Rml {
 
 class Context;
@@ -45,6 +47,7 @@ struct StackingContextChild;
  */
 
 class RMLUICORE_API Element : public ScriptInterface, public EnableObserverPtr<Element> {
+	friend class ::RmlUiX::internal::RmlUiFriendClass;
 public:
 	RMLUI_RTTI_DeclareWithParent(Element, ScriptInterface)
 
@@ -794,6 +797,10 @@ private:
 	friend class Rml::LayoutEngine;
 	friend class Rml::ElementScroll;
 	friend RMLUICORE_API void Rml::ReleaseFontResources();
+
+public:
+	const char* from_source_file = nullptr;
+	Rml::ElementPtr (*rerender_func)() = nullptr;
 };
 
 } // namespace Rml
